@@ -17,14 +17,19 @@ public class Run {
             try {
                 while ((line = bufferedReader.readLine()) != null) {
                     String[] split = line.split(",");
-                    int xPos = Integer.parseInt(split[1]) - 1;
-                    int yPos = Integer.parseInt(split[0]) - 1;
+                    int xPos = Integer.parseInt(split[1]);
+                    int yPos = Integer.parseInt(split[0]);
+
+                    if(xPos < 1 || xPos >= gobang.getBoardSize() || yPos < 1 || yPos >= gobang.getBoardSize()) {
+                        System.out.println("坐标必须在1~19范围");
+                        return;
+                    }
+
                     gobang.setStar(xPos, yPos);
                     gobang.printBoard();
-                    System.out.println("---请落子---");
                 }
             } catch (Exception e) {
-                System.out.println("输入格式不合法！！！");
+                System.out.println("输入格式不合法，请重新输入！！！");
             }
         }
 
